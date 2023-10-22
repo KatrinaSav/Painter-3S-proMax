@@ -1,0 +1,97 @@
+.tool-bar {
+  margin-bottom: 4px;
+  align-items: center;
+  display: flex;
+}
+
+.tool-bar button {
+  margin-left: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.canvas {
+  margin-left: 10px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.one {
+  left: 80px;
+}
+
+.two {
+  left: 180px;
+}
+
+.three {
+  left: 300px;
+}
+
+/* Стили для кнопок в выпадающем меню */
+.dropdown-content button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  background-color: white;
+  color: black;
+  border: none;
+}
+
+/* При наведении на кнопки в меню */
+.dropdown-content button:hover {
+  background-color: #ddd;
+}
+
+.switch-btn {
+  display: inline-block;
+  width: 40px; /* ширина */
+  height: 20px; /* высота */
+  background: #bfbfbf; /* цвет фона */
+  z-index: 0;
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition-duration: 300ms; /* анимация */
+}
+.switch-btn::after {
+  content: '';
+  height: 14px; /* высота кнопки */
+  width: 14px; /* ширина кнопки */
+  background: #fff; /* цвет кнопки */
+  top: 3px; /* положение кнопки по вертикали относительно основы */
+  left: 3px; /* положение кнопки по горизонтали относительно основы */
+  transition-duration: 300ms; /* анимация */
+  position: absolute;
+  z-index: 1;
+}
+.switch-on {
+  background: #118c4e;
+}
+.switch-on::after {
+  left: 23px;
+}
+
+.debug {
+  display: none;
+}
+
+.next-btn {
+  background-color: blanchedalmond;
+}
+
+.actions {
+  margin-right: 70px;
+}

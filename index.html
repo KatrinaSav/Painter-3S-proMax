@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>canvasExample</title>
+    <meta charset="utf-8" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="tool-bar">
+      <div class="actions">
+        <button id="clearButton">Очистить</button>
+        <button id="btnSegment" class="dropdown-button">Отрезок</button>
+        <button id="btnCurves" class="dropdown-button">
+          Кривые II порядка
+        </button>
+        <button id="btnInter" class="dropdown-button">Интерполяция</button>
+      </div>
+      <div class="switch-btn"></div>
+      <div class="debug"><button class="next-btn">next</button></div>
+    </div>
+    <div class="dropdown-content one" id="lineMenu">
+      <button id="cda">ЦДА</button>
+      <button id="bresenhem">Брезенхем</button>
+      <button id="voo">Ву</button>
+    </div>
+    <div class="dropdown-content two" id="curveMenu">
+      <button id="circle">Окружность</button>
+      <button id="elipse">Эллипс</button>
+      <button id="hyperbolaH">Гипербола(Г)</button>
+      <button id="hyperbolaV">Гипербола(В)</button>
+      <button id="parabolaH">Парабола(Г)</button>
+      <button id="parabolaV">Парабола(В)</button>
+    </div>
+    <div class="dropdown-content three" id="interMenu">
+      <button id="ermit">Эрмит</button>
+      <button id="beze">Безье</button>
+
+      <button id="voo">Ву</button>
+    </div>
+    <canvas class="canvas" height="601" width="1001" id="example"
+      >Обновите браузер</canvas
+    >
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
