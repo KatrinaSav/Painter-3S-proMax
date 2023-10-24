@@ -1,8 +1,8 @@
-const drawSegmentVoo = function (coordinates, ctx) {
-  const x1 = Math.abs(coordinates['one'].x)
-  const y1 = Math.abs(coordinates['one'].y)
-  const x2 = Math.abs(coordinates['two'].x)
-  const y2 = Math.abs(coordinates['two'].y)
+const drawSegmentVoo = function (coordinates) {
+  const x1 = Math.abs(coordinates['1'].x)
+  const y1 = Math.abs(coordinates['1'].y)
+  const x2 = Math.abs(coordinates['2'].x)
+  const y2 = Math.abs(coordinates['2'].y)
   let points = []
   let dx = Math.abs(x2 - x1) // Разница по X между начальной и конечной точками
   let dy = Math.abs(y2 - y1) // Разница по Y между начальной и конечной точками
@@ -31,7 +31,7 @@ const drawSegmentVoo = function (coordinates, ctx) {
       error = error - 2 * dx
     }
     x += sx
-    ctx.fillStyle = `rgba(0,0,0,${Math.abs(error) / 2 / dx + 0.5})`
+
     if (swap)
       points.push({
         x: y,
@@ -44,7 +44,6 @@ const drawSegmentVoo = function (coordinates, ctx) {
         y: y,
         fill: `rgba(0,0,0,${Math.abs(error) / 2 / dx + 0.5})`,
       })
-    ctx.fillStyle = `rgba(0,0,0,${1 - (Math.abs(error) / 2 / dx + 0.5)})`
     if (swap)
       points.push({
         x: y + sy,
@@ -59,7 +58,6 @@ const drawSegmentVoo = function (coordinates, ctx) {
       })
     error = error + 2 * dy
   }
-  ctx.fillStyle = `rgba(0,0,0,1)`
   return points
 }
 

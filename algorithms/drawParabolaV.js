@@ -1,8 +1,8 @@
 const drawParabolaV = function (coordinates, ctx) {
-  const x1 = coordinates['one'].x
-  const y1 = coordinates['one'].y
-  const x2 = coordinates['two'].x
-  const y2 = coordinates['two'].y
+  const x1 = coordinates['1'].x
+  const y1 = coordinates['1'].y
+  const x2 = coordinates['2'].x
+  const y2 = coordinates['2'].y
   const p = y2 - y1
   let points = []
   let x = 0

@@ -1,8 +1,8 @@
-const drawSegmentBresenhem = function (coordinates, ctx) {
-  const x1 = Math.abs(coordinates['one'].x)
-  const y1 = Math.abs(coordinates['one'].y)
-  const x2 = Math.abs(coordinates['two'].x)
-  const y2 = Math.abs(coordinates['two'].y)
+const drawSegmentBresenhem = function (coordinates) {
+  const x1 = Math.abs(coordinates['1'].x)
+  const y1 = Math.abs(coordinates['1'].y)
+  const x2 = Math.abs(coordinates['2'].x)
+  const y2 = Math.abs(coordinates['2'].y)
   let points = []
   let dx = Math.abs(x2 - x1) // Разница по X между начальной и конечной точками
   let dy = Math.abs(y2 - y1) // Разница по Y между начальной и конечной точками
@@ -29,7 +29,6 @@ const drawSegmentBresenhem = function (coordinates, ctx) {
   for (let i = 0; i <= dx; i++) {
     if (swap) points.push({ x: y, y: x })
     else points.push({ x: x, y: y })
-    console.log(error / 2 / dx + 0.5)
     if (error >= 0) {
       y += sy
       error = error - 2 * dx

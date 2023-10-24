@@ -1,14 +1,14 @@
 import multiplyMatrix from '../utils/multyMatrix.js'
 
-const drawBeze = function (coordinates, ctx) {
-  const x1 = coordinates['one'].x
-  const y1 = coordinates['one'].y
-  const x2 = coordinates['two'].x
-  const y2 = coordinates['two'].y
-  const x3 = coordinates['three'].x
-  const y3 = coordinates['three'].y
-  const x4 = coordinates['four'].x
-  const y4 = coordinates['four'].y
+const drawBeze = function (coordinates) {
+  const x1 = coordinates['1'].x
+  const y1 = coordinates['1'].y
+  const x2 = coordinates['2'].x
+  const y2 = coordinates['2'].y
+  const x3 = coordinates['3'].x
+  const y3 = coordinates['3'].y
+  const x4 = coordinates['4'].x
+  const y4 = coordinates['4'].y
   let points = []
   const matrixBeze = [
     [-1, 3, -3, 1],
@@ -29,14 +29,16 @@ const drawBeze = function (coordinates, ctx) {
     let result = multiplyMatrix(param, resultMatrix)
     points.push({ x: Math.floor(result[0][0]), y: Math.floor(result[0][1]) })
   }
+
   for (let key in coordinates) {
     let value = coordinates[key]
+
     for (let i = -2; i <= 2; i++) {
-      ctx.fillRect(value.x + i, value.y, 1, 1)
-      ctx.fillRect(value.x, value.y + i, 1, 1)
+      points.push({ x: value.x + i, y: value.y, fill: 'red' })
+      points.push({ x: value.x + i, y: value.y + i, fill: 'red' })
+      points.push({ x: value.x, y: value.y + i, fill: 'red' })
     }
   }
-  ctx.stroke()
   return points
 }
 
