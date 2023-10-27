@@ -20,12 +20,6 @@ class ThreeDObject {
 
     }
     convertCoordinatesToMatrix () {
-        const infFarDot = [
-            [1000, 0, 0, 1],
-            [0, 10, 0, 1],
-            [0, 0, 10, 1],
-            [0, 0, 0, 1],
-        ]
         const promisingMatrix = [
             [1, 0, 0, 0],
             [0, 1, 0, 0],
@@ -67,7 +61,6 @@ class ThreeDObject {
                          this.keyPoints[this.connections[key][dot]][2])
                     window.ctx.lineTo(secondX, secondY)
                 }
-
         }
         window.ctx.stroke()
     } 
@@ -169,6 +162,17 @@ class ThreeDObject {
         this.moveObject(-deltaX, -deltaY, 0)
         this.coordinateMatrix = multiplyMatrix(this.coordinateMatrix, translation)
         this.moveObject(deltaX, deltaY, 0)
+    }
+    outLook(dx, dy, dz){
+        const infFarDot = [
+            [1, 0, 0, 1/dx],
+            [0, 1, 0, 1/dy],
+            [0, 0, 1, 1/dz],
+            [0, 0, 0, 1],
+        ]
+        this.coordinateMatrix = multiplyMatrix(this.coordinateMatrix, infFarDot)
+        this.convertMatrixToCoordinates()
+        this.drawObject()
     }
     coordinateMeaning(i){
         let avg = 0

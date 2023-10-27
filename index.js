@@ -223,9 +223,9 @@ document.getElementById('btnScale').onclick = () => {
   }
 }
 document.getElementById('commitScale').onclick = () => {
-  const dx = parseInt(document.getElementById('sX').value, 10)
-  const dy = parseInt(document.getElementById('sY').value, 10)
-  const dz = parseInt(document.getElementById('sZ').value, 10)
+  const dx = parseFloat(document.getElementById('sX').value, 10)
+  const dy = parseFloat(document.getElementById('sY').value, 10)
+  const dz = parseFloat(document.getElementById('sZ').value, 10)
   ThreeD.scaleObject(dx, dy, dz)
 }
 document.getElementById('btnMirror').onclick = () => {
@@ -265,4 +265,19 @@ document.getElementById('rotateZ').onclick = () => {
   const degrees = parseInt(document.getElementById('angle').value, 10)
   ThreeD.rotateZ(degrees * (Math.PI / 180))
 }
+document.getElementById('btnOutlook').onclick = () => {
+  const movementDropdown = document.getElementById('percpectiveDropdow')
+  if (movementDropdown.style.display === 'flex') {
+    movementDropdown.style.display = 'none'
+  } else {
+    movementDropdown.style.display = 'flex'
+  }
+}
+document.getElementById('commitOutlook').onclick = () => {
+  const dx = parseFloat(document.getElementById('deltaXp').value, 10)
+  const dy = parseFloat(document.getElementById('deltaYp').value, 10)
+  const dz = parseFloat(document.getElementById('deltaZp').value, 10)
+  ThreeD.outLook(dx, dy, dz)
+}
+
 drawCanvas()
