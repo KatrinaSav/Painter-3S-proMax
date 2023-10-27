@@ -14,6 +14,7 @@
           Кривые II порядка
         </button>
         <button id="btnInter" class="dropdown-button">Интерполяция</button>
+        <button id="threeDMode">3d режим</button>
       </div>
       <div class="switch-btn"></div>
       <div class="debug"><button class="next-btn">next</button></div>
@@ -34,9 +35,46 @@
     <div class="dropdown-content three" id="interMenu">
       <button id="ermit">Эрмит</button>
       <button id="beze">Безье</button>
-
-      <button id="voo">Ву</button>
+      <button id="vSpline">В-сплайн</button>
+      <button id="vSplineClose">Замкнутый В-сплайн</button>
     </div>
+    <div class="threeDContent">
+    <button id="btnMovement">Перемещение</button>
+    <button id="btnRotate">Поворот</button>
+    <button id="btnScale">Скалирование</button>
+    <button id="btnMirror">Отражение</button>
+    <!-- <button id="btnOutlook">Перспектива</button> -->
+  </div>
+  <div class="movementDropdown" id="movementDropdown">
+    <label for="deltaX">Dx</label>
+    <input type="number" id="deltaX" value="0" required>
+    <label for="deltaY">Dy</label>
+    <input type="number" id="deltaY" value="0" required>
+    <label for="deltaZ">Dz</label>
+    <input type="number" id="deltaZ" value="0" required>
+    <button id="commitMovement">Ок</button>
+  </div>
+  <div class="movementDropdown" id="scaleDropdown">
+    <label for="sX">Sx</label>
+    <input type="number" id="sX" value="1" required>
+    <label for="sY">Sy</label>
+    <input type="number" id="sY" value="1" required>
+    <label for="sZ">Sz</label>
+    <input type="number" id="sZ" value="1" required>
+    <button id="commitScale">Ок</button>
+  </div>
+  <div class="movementDropdown" id="mirrorDropdown">
+    <button id="mirrorX">отразить по X</button>
+    <button id="mirrorY">отразить по Y</button>
+    <button id="mirrorZ">отразить по Z</button>
+  </div>
+  <div class="movementDropdown" id="rotateDropdow">
+    <label for="sX">Угол в °</label>
+    <input type="number" id="angle" value="0" required>
+    <button id="rotateX">повернуть по X</button>
+    <button id="rotateY">повернуть по Y</button>
+    <button id="rotateZ">повернуть по Z</button>
+  </div>
     <canvas class="canvas" height="601" width="1001" id="example"
       >Обновите браузер</canvas
     >

@@ -95,3 +95,34 @@
 .actions {
   margin-right: 70px;
 }
+
+.threeDContent{
+  display: none;
+}
+.threeDContent button{
+  display: block;
+  /* width: 100%; */
+  padding: 10px;
+  text-align: left;
+  background-color: white;
+  color: black;
+  border: none;
+}
+.threeDContent button:hover {
+  background-color: #ddd;
+}
+
+.movementDropdown{
+  display: none;
+  margin-right: 10px;
+}
+.movementDropdown label{
+  margin-left: 10px;
+}
+.movementDropdown button{
+  margin-left: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}

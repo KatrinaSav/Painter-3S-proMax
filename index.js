@@ -10,16 +10,20 @@ import drawParabolaV from './algorithms/drawParabolaV.js'
 import drawParabolaH from './algorithms/drawParabolaH.js'
 import drawBeze from './algorithms/drawBeze.js'
 import drawErmit from './algorithms/drawErmit.js'
+import drawVSpline from './algorithms/drawVSpline.js'
+import drawCycleVSpline from './algorithms/drawCycleVSpline.js'
 import defineTwoPointMode from './modes/defineTwoPointMode.js'
 import defineFourPointMode from './modes/defineFourPointMode.js'
+import defineManyPointsMode from './modes/defineManyPointMode.js'
+import ThreeDObject from './3d/ThreeDObject.js'
 
 const canvas = document.getElementById('example')
 window.ctx = canvas.getContext('2d')
 let currentMode = defineTwoPointMode(canvas, drawSegmentDDA)
 
+let ThreeD = null
 let debug = false
 window.queuePoints = []
-
 const drawPoint = function (position) {
   position.fill && (window.ctx.fillStyle = position.fill)
   window.ctx.fillRect(position.x, position.y, 1, 1)
@@ -38,6 +42,7 @@ const clearButton = document.getElementById('clearButton')
 clearButton.onclick = () => {
   drawCanvas()
   window.queuePoints = []
+  canvas.removeEventListener('mousedown', currentMode)
 }
 
 const btnSegment = document.getElementById('btnSegment')
@@ -150,6 +155,18 @@ btnErmit.onclick = () => {
   closeDropdown('interMenu')
 }
 
+const btnVSpline = document.getElementById('vSpline')
+btnVSpline.onclick = () => {
+  setMode(drawVSpline, defineManyPointsMode)
+  closeDropdown('interMenu')
+}
+
+const btnCycleVSpline = document.getElementById('vSplineClose')
+btnCycleVSpline.onclick = () => {
+  setMode(drawCycleVSpline, defineManyPointsMode)
+  closeDropdown('interMenu')
+}
+
 const switchDebug = document.querySelector('.switch-btn')
 switchDebug.onclick = () => {
   switchDebug.classList.toggle('switch-on')
@@ -167,5 +184,85 @@ nextBtn.onclick = () => {
   if (window.queuePoints.length != 0) {
     drawPoint(window.queuePoints.shift())
   }
+}
+
+document.getElementById('threeDMode').onclick = () => {
+  const threeDDiv = document.querySelector('.threeDContent')
+  if (threeDDiv.style.display === 'flex') {
+    threeDDiv.style.display = 'none'
+    ThreeD = null
+    window.ctx.beginPath()
+    drawCanvas()
+  } else {
+    threeDDiv.style.display = 'flex'
+    ThreeD = new ThreeDObject()
+  }
+}
+document.getElementById('btnMovement').onclick = () => {
+  const movementDropdown = document.getElementById('movementDropdown')
+  if (movementDropdown.style.display === 'flex') {
+    movementDropdown.style.display = 'none'
+  } else {
+    movementDropdown.style.display = 'flex'
+  }
+  // ThreeD.moveObject(100, 100, 100)
+}
+document.getElementById('commitMovement').onclick = () => {
+  // тут десятка значит десятичное число, вау
+  const dx = parseInt(document.getElementById('deltaX').value, 10)
+  const dy = parseInt(document.getElementById('deltaY').value, 10)
+  const dz = parseInt(document.getElementById('deltaZ').value, 10)
+  ThreeD.moveObject(dx, dy, dz)
+}
+document.getElementById('btnScale').onclick = () => {
+  const movementDropdown = document.getElementById('scaleDropdown')
+  if (movementDropdown.style.display === 'flex') {
+    movementDropdown.style.display = 'none'
+  } else {
+    movementDropdown.style.display = 'flex'
+  }
+}
+document.getElementById('commitScale').onclick = () => {
+  const dx = parseInt(document.getElementById('sX').value, 10)
+  const dy = parseInt(document.getElementById('sY').value, 10)
+  const dz = parseInt(document.getElementById('sZ').value, 10)
+  ThreeD.scaleObject(dx, dy, dz)
+}
+document.getElementById('btnMirror').onclick = () => {
+  const movementDropdown = document.getElementById('mirrorDropdown')
+  if (movementDropdown.style.display === 'flex') {
+    movementDropdown.style.display = 'none'
+  } else {
+    movementDropdown.style.display = 'flex'
+  }
+}
+document.getElementById('mirrorX').onclick = () => {
+  ThreeD.mirrorX()
+}
+document.getElementById('mirrorY').onclick = () => {
+  ThreeD.mirrorY()
+}
+document.getElementById('mirrorZ').onclick = () => {
+  ThreeD.mirrorZ()
+}
+document.getElementById('btnRotate').onclick = () => {
+  const movementDropdown = document.getElementById('rotateDropdow')
+  if (movementDropdown.style.display === 'flex') {
+    movementDropdown.style.display = 'none'
+  } else {
+    movementDropdown.style.display = 'flex'
+  }
+}
+document.getElementById('rotateX').onclick = () => {
+  const degrees = parseInt(document.getElementById('angle').value, 10)
+  ThreeD.rotateX(degrees * (Math.PI / 180))
+}
+document.getElementById('rotateY').onclick = () => {
+  const degrees = parseInt(document.getElementById('angle').value, 10)
+  ThreeD.rotateY(degrees * (Math.PI / 180))
+}
+document.getElementById('rotateZ').onclick = () => {
+  const degrees = parseInt(document.getElementById('angle').value, 10)
+  ThreeD.rotateZ(degrees * (Math.PI / 180))
 }
 drawCanvas()
