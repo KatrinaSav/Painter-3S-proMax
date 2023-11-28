@@ -1,5 +1,6 @@
 import getMousePosition from '../utils/getMousePosition.js'
 import drawVSpline from '../algorithms/drawVSpline.js'
+import drawPolygon from '../algorithms/drawPolygon.js'
 
 let keyPoints = []
 let toSwap = []
@@ -108,12 +109,12 @@ const defineManyPointsMode = function (canvas, algorithm) {
     if (event.code == 'Space') {
       // console.log(Object.getOwnPropertyNames(coordinates).length)
       if (Object.getOwnPropertyNames(coordinates).length > 3) {
-        keyPoints.push(coordinates)
+        if (algorithm !== drawPolygon) keyPoints.push(coordinates)
         window.queuePoints.push(...algorithm(coordinates))
         drawAllPoints()
         coordinates = {}
       } else {
-        alert('Введите 4 точки')
+        // alert('Введите 4 точки')
       }
     }
   })

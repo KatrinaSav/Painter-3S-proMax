@@ -16,9 +16,17 @@ import defineTwoPointMode from './modes/defineTwoPointMode.js'
 import defineFourPointMode from './modes/defineFourPointMode.js'
 import defineManyPointsMode from './modes/defineManyPointMode.js'
 import ThreeDObject from './3d/ThreeDObject.js'
+import drawPolygon from './algorithms/drawPolygon.js'
+import checkDotPoly from './algorithms/checkDotPoly.js'
+import defineOnePointMode from './modes/defineOnePointMode.js'
+import checkSegmentPoly from './algorithms/checkSegmentPoly.js'
+import drawConvexHullG from './algorithms/drawconvexHullG.js'
+import fillPoly from './algorithms/fillPoly.js'
 
 const canvas = document.getElementById('example')
 window.ctx = canvas.getContext('2d')
+window.polygons = []
+window.timer = setTimeout(() => {}, 0)
 let currentMode = defineTwoPointMode(canvas, drawSegmentDDA)
 
 let ThreeD = null
@@ -42,6 +50,7 @@ const clearButton = document.getElementById('clearButton')
 clearButton.onclick = () => {
   drawCanvas()
   window.queuePoints = []
+  window.polygons = []
   canvas.removeEventListener('mousedown', currentMode)
 }
 
@@ -58,6 +67,16 @@ btnSegment.addEventListener('click', function () {
 const btnCurves = document.getElementById('btnCurves')
 btnCurves.addEventListener('click', function () {
   const dropdownContent = document.getElementById('curveMenu')
+  if (dropdownContent.style.display === 'block') {
+    dropdownContent.style.display = 'none'
+  } else {
+    dropdownContent.style.display = 'block'
+  }
+})
+
+const btnPoly = document.getElementById('polygon')
+btnPoly.addEventListener('click', function () {
+  const dropdownContent = document.getElementById('polyMenu')
   if (dropdownContent.style.display === 'block') {
     dropdownContent.style.display = 'none'
   } else {
@@ -165,6 +184,36 @@ const btnCycleVSpline = document.getElementById('vSplineClose')
 btnCycleVSpline.onclick = () => {
   setMode(drawCycleVSpline, defineManyPointsMode)
   closeDropdown('interMenu')
+}
+
+const btnDrawPoly = document.getElementById('drawPoly')
+btnDrawPoly.onclick = () => {
+  setMode(drawPolygon, defineManyPointsMode)
+  closeDropdown('polyMenu')
+}
+
+const btnDotPoly = document.getElementById('dotPoly')
+btnDotPoly.onclick = () => {
+  setMode(checkDotPoly, defineOnePointMode)
+  closeDropdown('polyMenu')
+}
+
+const btnSegmentPoly = document.getElementById('segmentPoly')
+btnSegmentPoly.onclick = () => {
+  setMode(checkSegmentPoly, defineTwoPointMode)
+  closeDropdown('polyMenu')
+}
+
+const btnWrapGarvis = document.getElementById('wrapGarvis')
+btnWrapGarvis.onclick = () => {
+  drawConvexHullG()
+  closeDropdown('polyMenu')
+}
+
+const btnFill = document.getElementById('fill')
+btnFill.onclick = () => {
+  fillPoly()
+  closeDropdown('polyMenu')
 }
 
 const switchDebug = document.querySelector('.switch-btn')

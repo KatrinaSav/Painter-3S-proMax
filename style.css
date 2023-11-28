@@ -37,6 +37,10 @@
   left: 300px;
 }
 
+.five {
+  left: 500px;
+}
+
 /* Стили для кнопок в выпадающем меню */
 .dropdown-content button {
   display: block;
@@ -96,10 +100,10 @@
   margin-right: 70px;
 }
 
-.threeDContent{
+.threeDContent {
   display: none;
 }
-.threeDContent button{
+.threeDContent button {
   display: block;
   /* width: 100%; */
   padding: 10px;
@@ -112,17 +116,24 @@
   background-color: #ddd;
 }
 
-.movementDropdown{
+.movementDropdown {
   display: none;
   margin-right: 10px;
 }
-.movementDropdown label{
+.movementDropdown label {
   margin-left: 10px;
 }
-.movementDropdown button{
+.movementDropdown button {
   margin-left: 10px;
   background-color: #4caf50;
   color: white;
   border: none;
   cursor: pointer;
+}
+
+.answer {
+  display: none;
+  position: absolute;
+  left: 30px;
+  top: 20px;
 }

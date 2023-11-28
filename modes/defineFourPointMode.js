@@ -56,37 +56,38 @@ const clearCurve = function (segments, algorithm) {
   })
 }
 
-const changeKeyPoint = function (position) {
+const changeKeyPoint = function (position, algorithm) {
   clearOldPoints(toSwap)
   for (let segment of toSwap) {
     const key = segment.key
     const index = keyPoints.indexOf(segment.el)
-
-    if (keyPoints.length !== 0) {
-      if (segment.key === '1') {
-        console.log('ind', keyPoints[index]['2'])
-        keyPoints[index]['2'].x += position.x - segment.el[key].x
-        keyPoints[index]['2'].y += position.y - segment.el[key].y
-        console.log('ind', keyPoints[index]['2'])
-      } else if (segment.key === '4') {
-        keyPoints[index]['3'].x += position.x - segment.el[key].x
-        keyPoints[index]['3'].y += position.y - segment.el[key].y
-      }
-      if (index !== keyPoints.length - 1) {
-        if (segment.key === '3') {
-          keyPoints[index + 1]['2'].x -= position.x - segment.el[key].x
-          keyPoints[index + 1]['2'].y -= position.y - segment.el[key].y
+    if (algorithm === drawBeze) {
+      if (keyPoints.length !== 0) {
+        if (segment.key === '1') {
+          console.log('ind', keyPoints[index]['2'])
+          keyPoints[index]['2'].x += position.x - segment.el[key].x
+          keyPoints[index]['2'].y += position.y - segment.el[key].y
+          console.log('ind', keyPoints[index]['2'])
+        } else if (segment.key === '4') {
+          keyPoints[index]['3'].x += position.x - segment.el[key].x
+          keyPoints[index]['3'].y += position.y - segment.el[key].y
+        }
+        if (index !== keyPoints.length - 1) {
+          if (segment.key === '3') {
+            keyPoints[index + 1]['2'].x -= position.x - segment.el[key].x
+            keyPoints[index + 1]['2'].y -= position.y - segment.el[key].y
+          }
+        }
+        if (index !== 0) {
+          if (segment.key === '2') {
+            keyPoints[index - 1]['3'].x -= position.x - segment.el[key].x
+            keyPoints[index - 1]['3'].y -= position.y - segment.el[key].y
+          }
         }
       }
-      if (index !== 0) {
-        if (segment.key === '2') {
-          keyPoints[index - 1]['3'].x -= position.x - segment.el[key].x
-          keyPoints[index - 1]['3'].y -= position.y - segment.el[key].y
-        }
-      }
-      segment.el[segment.key] = position
-      console.log(keyPoints)
     }
+    segment.el[segment.key] = position
+    console.log(keyPoints)
   }
 }
 
@@ -99,7 +100,7 @@ const defineFourPointMode = (canvas, algorithm) => {
     if (swapState) {
       console.log('swap', toSwap)
       clearCurve(keyPoints, algorithm)
-      changeKeyPoint(position)
+      changeKeyPoint(position, algorithm)
       for (let segment of keyPoints) {
         window.queuePoints.push(...algorithm(segment))
       }

@@ -7,7 +7,6 @@ const defineTwoPointMode = (canvas, algorithm) => {
     if ('1' in coordinates) {
       coordinates['2'] = position
       window.queuePoints.push(...algorithm(coordinates))
-      console.log('add', queuePoints)
       coordinates = {}
     } else {
       coordinates['1'] = position
