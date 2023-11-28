@@ -1,4 +1,6 @@
 const drawCanvas = function () {
+  window.ctx.beginPath()
+  window.ctx.closePath()
   window.ctx.clearRect(0, 0, 1001, 601)
   window.ctx.moveTo(1, 1)
   window.ctx.lineTo(1001, 1)

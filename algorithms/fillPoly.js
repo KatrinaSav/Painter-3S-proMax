@@ -13,7 +13,7 @@ function fillPoly() {
     }
 
     window.ctx.closePath()
-    window.ctx.fill()
+    window.ctx.fill('evenodd')
   })
 }
 
