@@ -22,6 +22,10 @@ import defineOnePointMode from './modes/defineOnePointMode.js'
 import checkSegmentPoly from './algorithms/checkSegmentPoly.js'
 import drawConvexHullG from './algorithms/drawconvexHullG.js'
 import fillPoly from './algorithms/fillPoly.js'
+import drawClippingSurface from './algorithms/drawClippingSurface.js'
+import clipLine from './algorithms/clipLine.js'
+import drawClippingSpace from './algorithms/drawClippingSpace.js'
+import clipLine3D from './algorithms/clipLine3D.js'
 
 const canvas = document.getElementById('example')
 window.ctx = canvas.getContext('2d')
@@ -78,6 +82,17 @@ const btnPoly = document.getElementById('polygon')
 btnPoly.addEventListener('click', function () {
   const dropdownContent = document.getElementById('polyMenu')
   if (dropdownContent.style.display === 'block') {
+    dropdownContent.style.display = 'none'
+  } else {
+    dropdownContent.style.display = 'block'
+  }
+})
+
+const btnClipping = document.getElementById('clipping')
+btnClipping.addEventListener('click', function () {
+  const dropdownContent = document.getElementById('clippingMenu')
+  if (dropdownContent.style.display === 'block') {
+    drawCanvas()
     dropdownContent.style.display = 'none'
   } else {
     dropdownContent.style.display = 'block'
@@ -214,6 +229,20 @@ const btnFill = document.getElementById('fill')
 btnFill.onclick = () => {
   fillPoly()
   closeDropdown('polyMenu')
+}
+
+const btn2dClipping = document.getElementById('2dClip')
+btn2dClipping.onclick = () => {
+  drawClippingSurface()
+  setMode(clipLine, defineTwoPointMode)
+  closeDropdown('clippingMenu')
+}
+
+const btn3dClipping = document.getElementById('3dClip')
+btn3dClipping.onclick = () => {
+  drawClippingSpace()
+  setMode(clipLine3D, defineTwoPointMode)
+  closeDropdown('clippingMenu')
 }
 
 const switchDebug = document.querySelector('.switch-btn')

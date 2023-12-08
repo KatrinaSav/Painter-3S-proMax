@@ -41,6 +41,10 @@
   left: 500px;
 }
 
+.six {
+  left: 600px;
+}
+
 /* Стили для кнопок в выпадающем меню */
 .dropdown-content button {
   display: block;
@@ -119,6 +123,8 @@
 .movementDropdown {
   display: none;
   margin-right: 10px;
+  margin-bottom: 5px;
+  margin-top: 8px;
 }
 .movementDropdown label {
   margin-left: 10px;
