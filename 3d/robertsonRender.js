@@ -14,7 +14,7 @@ class robertsonObject {
             P8: [50, -50, 25],}
         this.planeDistance = 200
         this.innerDot = [250, 150, 125]
-        this.povVector = [[-1, -1, -1, 0.01]]
+        this.povVector = [[-1, -1, -1, 0]]
         this.edges = [{1: 'P1', 2: 'P2'}, //0 12
             {1: 'P3', 2: 'P2'},           //1 23
             {1: 'P3', 2: 'P4'},           //2 34
