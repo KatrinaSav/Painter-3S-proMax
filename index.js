@@ -16,6 +16,7 @@ import defineTwoPointMode from './modes/defineTwoPointMode.js'
 import defineFourPointMode from './modes/defineFourPointMode.js'
 import defineManyPointsMode from './modes/defineManyPointMode.js'
 import ThreeDObject from './3d/ThreeDObject.js'
+import robertsonObject from './3d/robertsonRender.js'
 import drawPolygon from './algorithms/drawPolygon.js'
 import checkDotPoly from './algorithms/checkDotPoly.js'
 import defineOnePointMode from './modes/defineOnePointMode.js'
@@ -243,6 +244,35 @@ btn3dClipping.onclick = () => {
   drawClippingSpace()
   setMode(clipLine3D, defineTwoPointMode)
   closeDropdown('clippingMenu')
+}
+
+const btnRobertson = document.getElementById('roberts')
+btnRobertson.onclick = () => {
+  const robertsonContent = document.getElementById('rotateDropdowRobertson')
+  if (robertsonContent.style.display === 'flex') {
+    robertsonContent.style.display = 'none'
+    ThreeD = null
+    window.ctx.beginPath()
+    drawCanvas()
+  } else {
+    robertsonContent.style.display = 'flex'
+    ThreeD = new robertsonObject()
+  }
+}
+
+document.getElementById('rotateXRobertson').onclick = () => {
+  const degrees = parseInt(document.getElementById('angleRobertson').value, 10)
+  ThreeD.rotateX(degrees * (Math.PI / 180))
+}
+
+document.getElementById('rotateYRobertson').onclick = () => {
+  const degrees = parseInt(document.getElementById('angleRobertson').value, 10)
+  ThreeD.rotateY(degrees * (Math.PI / 180))
+}
+
+document.getElementById('rotateZRobertson').onclick = () => {
+  const degrees = parseInt(document.getElementById('angleRobertson').value, 10)
+  ThreeD.rotateZ(degrees * (Math.PI / 180))
 }
 
 const switchDebug = document.querySelector('.switch-btn')

@@ -4,7 +4,7 @@ const clipLine3d = function (coordinates) {
     // должны быть заменены в зависимости от многоугольника
     let beginT = 0
     let endT = 1
-    const vertexClippingList = [{x:350, y:100}, {x:650, y:100}, {x:800, y:300}, {x:650, y:500}, {x:350, y:500}, {x:200, y:300}]
+    const vertexClippingList = [{x:350, y:150}, {x:600, y:100}, {x:550, y:500}, {x:200, y:500}, {x:250, y:260}]
     const lineVector = {x: coordinates['2'].x - coordinates['1'].x, y: coordinates['2'].y - coordinates['1'].y}
     for (let i = 0; i<vertexClippingList.length;i++){
         const vertexLineVector = {x: coordinates['1'].x - vertexClippingList[i].x, y: coordinates['1'].y - vertexClippingList[i].y}
